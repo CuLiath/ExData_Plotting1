@@ -1,0 +1,11 @@
+allpowerdata <- read.csv2("./data/household_power_consumption.txt", na.strings = "?")
+ourdata <- allpowerdata[allpowerdata[1] == "1/2/2007" | allpowerdata[1] == "2/2/2007", ]
+ourdata[ , 1] <- as.Date(ourdata[, 1], "%d/%m/%Y")
+ourdata[, 10] <- as.POSIXct(paste(ourdata[, 1],ourdata[, 2])
+png("plot3.png")
+plot(ourdata$V10, ourdata$Sub_metering_1, xlab = "", ylab = "Energy sub metering", pch = NA_integer_, yaxp = c(0, 30, 3))
+lines(ourdata$V10, ourdata$Sub_metering_1, lty = 1)
+lines(ourdata$V10, ourdata$Sub_metering_2, lty = 1, col = "red")
+lines(ourdata$V10, ourdata$Sub_metering_3, lty = 1, col = "blue")
+legend(x = "topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
+dev.off()
